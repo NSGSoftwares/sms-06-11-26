@@ -1,0 +1,336 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------------
+   Design tokens. Values are "R G B" triplets so Tailwind can add opacity.
+   Palette (data-palette) and mode (.dark) are set on <html> by ThemeContext.
+   ------------------------------------------------------------------------ */
+:root {
+  --surface: 255 255 255;
+  --surface-muted: 248 250 252;
+  --surface-sunken: 244 246 250;
+  --line: 226 232 240;
+  --line-strong: 203 213 225;
+  --fg: 15 23 42;
+  --fg-muted: 71 85 105;
+  --fg-subtle: 100 116 139;
+  --shadow: 15 23 42;
+
+  --success: 21 128 61;
+  --success-soft: 220 252 231;
+  --warning: 180 83 9;
+  --warning-soft: 254 243 199;
+  --danger: 185 28 28;
+  --danger-soft: 254 226 226;
+  --info: 29 78 216;
+  --info-soft: 219 234 254;
+
+  --brand-fg: 255 255 255;
+  --nav-fg: 17 19 31;
+
+  /* default palette = Aurora (stored as "indigo" so saved settings keep working) */
+  --brand: 15 150 135;
+  --brand-hover: 13 124 112;
+  --brand-2: var(--brand-hover);
+  --brand-soft: 204 251 241;
+  --brand-on-soft: 15 118 110;
+  --nav: 15 23 42;
+  --nav-active: 30 41 59;
+
+  color-scheme: light;
+}
+
+.dark {
+  --surface: 22 24 36;
+  --surface-muted: 28 30 44;
+  --surface-sunken: 11 12 20;
+  --line: 44 47 66;
+  --line-strong: 64 68 92;
+  --fg: 243 244 250;
+  --fg-muted: 200 203 222;
+  --fg-subtle: 142 147 172;
+  --shadow: 0 0 0;
+
+  --success: 74 222 128;
+  --success-soft: 20 55 38;
+  --warning: 252 211 77;
+  --warning-soft: 66 45 12;
+  --danger: 252 165 165;
+  --danger-soft: 76 25 25;
+  --info: 147 197 253;
+  --info-soft: 23 37 84;
+
+  --nav-fg: 243 244 250;
+
+  color-scheme: dark;
+}
+
+/* --- palettes (light) --- */
+html[data-palette="indigo"] {
+  --brand: 15 150 135;
+  --brand-hover: 13 124 112;
+  --brand-2: 20 184 166;
+  --brand-soft: 204 251 241;
+  --brand-on-soft: 15 118 110;
+  --nav: 15 23 42;
+  --nav-active: 30 41 59;
+}
+html[data-palette="emerald"] {
+  --brand: 5 150 105;
+  --brand-hover: 4 120 87;
+  --brand-soft: 209 250 229;
+  --brand-on-soft: 4 120 87;
+  --nav: 6 78 59;
+  --nav-active: 4 120 87;
+}
+html[data-palette="violet"] {
+  --brand: 124 58 237;
+  --brand-hover: 109 40 217;
+  --brand-soft: 237 233 254;
+  --brand-on-soft: 109 40 217;
+  --nav: 46 16 101;
+  --nav-active: 91 33 182;
+}
+html[data-palette="rose"] {
+  --brand: 225 29 72;
+  --brand-hover: 190 18 60;
+  --brand-soft: 255 228 230;
+  --brand-on-soft: 190 18 60;
+  --nav: 76 5 25;
+  --nav-active: 190 18 60;
+}
+html[data-palette="amber"] {
+  --brand: 217 119 6;
+  --brand-hover: 180 83 9;
+  --brand-soft: 254 243 199;
+  --brand-on-soft: 180 83 9;
+  --nav: 69 26 3;
+  --nav-active: 180 83 9;
+}
+html[data-palette="cyan"] {
+  --brand: 8 145 178;
+  --brand-hover: 14 116 144;
+  --brand-soft: 207 250 254;
+  --brand-on-soft: 14 116 144;
+  --nav: 22 78 99;
+  --nav-active: 14 116 144;
+}
+html[data-palette="sunset"] {
+  --brand: 234 88 12;
+  --brand-hover: 194 65 12;
+  --brand-soft: 255 237 213;
+  --brand-on-soft: 194 65 12;
+  --nav: 67 20 7;
+  --nav-active: 194 65 12;
+}
+html[data-palette="fuchsia"] {
+  --brand: 192 38 211;
+  --brand-hover: 162 28 175;
+  --brand-soft: 250 232 255;
+  --brand-on-soft: 162 28 175;
+  --nav: 74 4 78;
+  --nav-active: 162 28 175;
+}
+html[data-palette="teal"] {
+  --brand: 13 148 136;
+  --brand-hover: 15 118 110;
+  --brand-soft: 204 251 241;
+  --brand-on-soft: 15 118 110;
+  --nav: 19 78 74;
+  --nav-active: 15 118 110;
+}
+html[data-palette="slate"] {
+  --brand: 51 65 85;
+  --brand-hover: 30 41 59;
+  --brand-soft: 226 232 240;
+  --brand-on-soft: 30 41 59;
+  --nav: 30 41 59;
+  --nav-active: 51 65 85;
+}
+
+/* --- palettes (dark) --- */
+html.dark[data-palette="indigo"] {
+  --brand: 45 212 191;
+  --brand-hover: 94 234 212;
+  --brand-2: 20 184 166;
+  --brand-fg: 4 24 22;
+  --brand-soft: 8 58 54;
+  --brand-on-soft: 153 246 228;
+  --nav: 8 13 28;
+  --nav-active: 22 32 52;
+}
+html.dark[data-palette="emerald"] {
+  --brand: 16 185 129;
+  --brand-hover: 52 211 153;
+  --brand-soft: 6 60 45;
+  --brand-on-soft: 110 231 183;
+  --nav: 3 42 32;
+  --nav-active: 4 120 87;
+}
+html.dark[data-palette="violet"] {
+  --brand: 139 92 246;
+  --brand-hover: 167 139 250;
+  --brand-soft: 46 16 101;
+  --brand-on-soft: 196 181 253;
+  --nav: 27 10 60;
+  --nav-active: 91 33 182;
+}
+html.dark[data-palette="rose"] {
+  --brand: 244 63 94;
+  --brand-hover: 251 113 133;
+  --brand-soft: 76 5 25;
+  --brand-on-soft: 254 205 211;
+  --nav: 45 4 15;
+  --nav-active: 190 18 60;
+}
+html.dark[data-palette="amber"] {
+  --brand: 245 158 11;
+  --brand-hover: 251 191 36;
+  --brand-soft: 69 26 3;
+  --brand-on-soft: 253 230 138;
+  --nav: 40 15 2;
+  --nav-active: 180 83 9;
+}
+html.dark[data-palette="cyan"] {
+  --brand: 6 182 212;
+  --brand-hover: 34 211 238;
+  --brand-soft: 18 65 82;
+  --brand-on-soft: 165 243 252;
+  --nav: 10 38 48;
+  --nav-active: 14 116 144;
+}
+html.dark[data-palette="sunset"] {
+  --brand: 249 115 22;
+  --brand-hover: 251 146 60;
+  --brand-soft: 67 20 7;
+  --brand-on-soft: 254 215 170;
+  --nav: 38 11 4;
+  --nav-active: 194 65 12;
+}
+html.dark[data-palette="fuchsia"] {
+  --brand: 217 70 239;
+  --brand-hover: 232 121 249;
+  --brand-soft: 74 4 78;
+  --brand-on-soft: 245 208 254;
+  --nav: 42 2 45;
+  --nav-active: 162 28 175;
+}
+html.dark[data-palette="teal"] {
+  --brand: 20 184 166;
+  --brand-hover: 45 212 191;
+  --brand-soft: 17 68 64;
+  --brand-on-soft: 153 246 228;
+  --nav: 10 40 38;
+  --nav-active: 15 118 110;
+}
+html.dark[data-palette="slate"] {
+  --brand: 100 116 139;
+  --brand-hover: 148 163 184;
+  --brand-soft: 51 65 85;
+  --brand-on-soft: 226 232 240;
+  --nav: 15 23 42;
+  --nav-active: 51 65 85;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-sunken text-fg antialiased;
+    margin: 0;
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-feature-settings: "cv11", "ss03";
+    letter-spacing: -0.003em;
+  }
+
+  h1, h2, h3 {
+    letter-spacing: -0.022em;
+  }
+
+  /* Slim, quiet scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--line-strong)) transparent;
+  }
+
+  /* One consistent, visible keyboard focus ring everywhere. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand/60 ring-offset-2 ring-offset-surface;
+  }
+
+  ::selection {
+    @apply bg-brand/25;
+  }
+}
+
+@keyframes toastProgress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes toastSlideIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(28px, -12px, 0) scale(0.92);
+  }
+  70% {
+    transform: translate3d(-3px, 2px, 0) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-toast-in {
+  animation: toastSlideIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards;
+}
+
+.toast-progress-bar {
+  animation: toastProgress linear forwards;
+}
+
+.toast-card:hover .toast-progress-bar {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Frosted-glass surface used by the navbar and floating panels. */
+.glass {
+  background: rgb(var(--surface) / 0.72);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  backdrop-filter: saturate(180%) blur(18px);
+  border: 1px solid rgb(var(--line) / 0.8);
+}
+
+/* Brand gradient for primary actions. */
+.bg-brand-gradient {
+  background-image: linear-gradient(
+    135deg,
+    rgb(var(--brand)) 0%,
+    rgb(var(--brand-2, var(--brand-hover))) 100%
+  );
+}
+
+@keyframes pageReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.page-reveal {
+  animation: pageReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
